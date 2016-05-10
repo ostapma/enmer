@@ -1,0 +1,80 @@
+﻿@model EnmerWeb.Models.LoginModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div layout="row" layout-align="center center" flex>
+    <md-content>
+        <md-card>
+            <md-card-title layout="row">
+                <md-card-title-text>
+                    <span class="md-headline">Login</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new
+                {
+                    novalidate = "",
+                    ng_controller = "LoginCtrl",
+                    ng_app = "LoginApp",
+                    name = "loginForm"
+                }))
+                {
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
+                            <label>Email</label>
+                            <input name="email" type="email" style="width:300px"
+                                   required md-no-asterisk ng-model="data.email" ng-pattern="/^.+&#64;.+\..+$/">
+                            <div ng-messages="loginForm.email.$error">
+                                <div ng-message="required">Email is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>Password</label>
+                                <input name="password" required style="width:300px" md-no-asterisk ng-model="data.password">
+                                <div ng-messages="loginForm.password.$error">
+                                    <div ng-message="required">Password is required.</div>
+
+                                </div>
+                                @if (Model.IsFailed)
+                                {
+                                    <div ng-if="loginForm.email.$pristine&&loginForm.password.$pristine">
+                                        <div ng-message="correctPassword">Username/Password combination is incorrect</div>
+                                    </div>
+                                }
+
+                            </md-input-container>
+                        </div>
+                        <div layout="column" layout-align="center center">
+                            <md-card-actions>
+                                <md-button class="md-raised" type="submit" ng-disabled="!loginForm.$valid">Login</md-button>
+                            </md-card-actions>
+                        </div>
+
+                }
+            </md-card-content>
+        </md-card>
+    </md-content>
+
+</div>
+
+@section scripts{
+    <script>
+        var app = angular.module('LoginApp', ['ngMaterial']);
+        var ctr = app.controller('LoginCtrl', function ($scope) {
+            $scope.data = {
+                email: "",
+                password: "",
+                isValid: false
+            };
+
+            //$scope.$watch("data.email", function (newValue, oldValue) {
+            //    console.log(newValue)
+
+            //});
+        });
+    </script>
+}
