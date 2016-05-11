@@ -156,6 +156,7 @@
     <Content Include="Scripts\angular-animate\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria\angular-aria.js" />
     <Content Include="Scripts\angular-aria\angular-aria.min.js" />
+    <Content Include="Scripts\angular-material-icons\angular-material-icons.js" />
     <Content Include="Scripts\angular-material\angular-material-mocks.js" />
     <Content Include="Scripts\angular-material\angular-material.js" />
     <Content Include="Scripts\angular-material\angular-material.min.js" />
@@ -194,6 +195,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Views\Shared\_LayoutBlank.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,24 +1,48 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/angular-material.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/angular-material.layouts.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-</head>
-<body layout="row">
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
 
+<section ng-app="EnmerApp" ng-cloak layout="row" flex>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" 
+                md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"  style="margin-right: 10px;">
+        <md-toolbar>
+            <div layout-padding>
+                <div>Firstname Lastname</div>
+            </div>
+            <div class="md-toolbar-tools">
+                <ng-md-icon size="64" icon="account_circle" style="fill: white"></ng-md-icon>
+                <span flex></span>
+                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                {
+                    <md-button class="md-icon-button" aria-label="Settings" type="submit">
+                        <ng-md-icon icon="exit_to_app" style="fill: white"></ng-md-icon>
+                    </md-button>
+                }
+            </div>
+        </md-toolbar>
+
+    </md-sidenav>
+
+    <div flex class="md-whiteframe-z2">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+                    <ng-md-icon icon="menu"></ng-md-icon>
+                </md-button>
+                @RenderSection("toolbar")
+            </div>
+        </md-toolbar>
         @RenderBody()
+    </div>
+</section>
 
 
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-animate/angular-animate.js"></script>
-    <script src="~/Scripts/angular-aria/angular-aria.js"></script>
-    <script src="~/Scripts/angular-material/angular-material.js"></script>
-    <script src="~/Scripts/angular-messages/angular-messages.js"></script>
 
-    @RenderSection("scripts");
-</body>
-</html>
+@section scripts{
+    <script>
+        var app = angular.module('EnmerApp', ['ngMaterial', 'ngMessages', 'ngMdIcons']);
+    </script>
+    @RenderSection("scripts")
+}
+
+

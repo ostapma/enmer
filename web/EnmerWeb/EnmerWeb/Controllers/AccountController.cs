@@ -41,13 +41,21 @@ namespace EnmerWeb.Controllers
             }
         }
 
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
             return View(new LoginModel());
         }
         [HttpPost, AllowAnonymous]
-        public async Task< ActionResult> Login(LoginModel model, string returnUrl)
+        public  ActionResult Login(LoginModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -56,19 +64,25 @@ namespace EnmerWeb.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, shouldLockout: false);
+            var result = SignInManager.PasswordSignIn(model.Email, model.Password, false, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
                 case SignInStatus.Failure:
                 default:
                     return View(new LoginModel() { IsFailed = true });
             }
 
         }
+
+        [HttpPost]
+        public ActionResult LogOut()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
+
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
