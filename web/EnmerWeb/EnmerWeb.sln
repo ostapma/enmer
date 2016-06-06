@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "EnmerWeb\WebApp.csproj", "{32668947-0DE9-4A25-8FE6-B06F8DC46F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnmerData", "EnmerData\EnmerData.csproj", "{7AC35631-EA62-44AA-B5E0-4D9DEEC9996D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnmerCore", "..\..\core\EnmerCore\EnmerCore.csproj", "{7AC35631-EA62-44AA-B5E0-4D9DEEC9996D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnmerCore.Test", "..\..\core\EnmerCore.Test\EnmerCore.Test.csproj", "{9C53E149-267E-4010-98F9-70E357658F4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7AC35631-EA62-44AA-B5E0-4D9DEEC9996D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AC35631-EA62-44AA-B5E0-4D9DEEC9996D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AC35631-EA62-44AA-B5E0-4D9DEEC9996D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C53E149-267E-4010-98F9-70E357658F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C53E149-267E-4010-98F9-70E357658F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C53E149-267E-4010-98F9-70E357658F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C53E149-267E-4010-98F9-70E357658F4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

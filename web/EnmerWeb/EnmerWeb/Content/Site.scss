@@ -1,0 +1,15 @@
+﻿body {
+    background-color: #ffffff;
+    margin: 20px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+#main_menu
+{ 
+    ng-md-icon {
+    fill: gray
+    }
+}
