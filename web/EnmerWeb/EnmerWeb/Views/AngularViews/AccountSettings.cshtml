@@ -1,0 +1,49 @@
+﻿<md-content layout-padding layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+        <md-card>
+            <md-card-title layout="row">
+                <md-card-title-text>
+                    <span class="md-headline">Profile</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column">
+                <md-input-container class="md-block">
+                    <label>First Name</label>
+                    <input style="width: 300px" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Last Name</label>
+                    <input style="width: 300px" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input style="width: 300px" type="email" required>
+                </md-input-container>
+                <div layout="row">
+                    <input class="ng-hide" id="input-file-id" type="file" ng-file-select="onFileSelect($files)"
+                           ng-model="image.data" accept="image/png, image/jpeg" />
+                    <ng-md-icon size="64" icon="account_circle" ng-if="!image"></ng-md-icon>
+                    <img style="height: 64px; width: 64px;" ng-src="{{image.data || image.link}}" ng-if="image"/>
+                    <div layout="column">
+                        <md-button class="md-icon-button" aria-label="toggle">
+                            <ng-md-icon icon="delete_forever" style="fill: red"></ng-md-icon>
+                        </md-button>
+                        <label for="input-file-id" class="md-button md-raised">Choose Picture</label>
+
+                    </div>
+                </div>
+
+                <div  layout="row">
+                   
+                    
+                    
+                </div>
+            </md-card-content>
+            <div></div>
+            <md-card-actions layout="row" layout-align="start">
+                <md-button class="md-raised" type="submit">Save</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+    
+</md-content>

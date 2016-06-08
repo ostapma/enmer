@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using EnmerWeb.Controllers.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -64,7 +65,8 @@ namespace EnmerWeb.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = SignInManager.PasswordSignIn(model.Email, model.Password, false, shouldLockout: false);
+            var result = SignInManager.PasswordSignIn(model.Email, 
+                model.Password, true, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -95,7 +97,7 @@ namespace EnmerWeb.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(AppModelHelper<AccountModel>.CreateAppModel());
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="EnmerApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title</title>
+    <title ng-bind="($title || 'Enmer')">@ViewBag.Title</title>
     <link href="~/Content/angular-material.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/angular-material.layouts.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Site.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/Site.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+    <base href="/">
 </head>
 <body layout="row">
 
@@ -16,12 +17,17 @@
 
 
     <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-ui-router/angular-ui-router.js"></script>
     <script src="~/Scripts/angular-animate/angular-animate.js"></script>
     <script src="~/Scripts/angular-aria/angular-aria.js"></script>
     <script src="~/Scripts/angular-material/angular-material.js"></script>
     <script src="~/Scripts/angular-messages/angular-messages.js"></script>
+    <script src="~/Scripts/angular-ui-router-title/angular-ui-router-title.js"></script>
     <script src="~/Scripts/angular-material-icons/angular-material-icons.js"></script>
-
+    <script src="~/Scripts/app.js"></script>
+    <script>
+      
+    </script>
     @RenderSection("scripts")
 </body>
 </html>

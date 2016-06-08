@@ -169,14 +169,20 @@
     <Content Include="Scripts\angular-material\angular-material.min.js" />
     <Content Include="Scripts\angular-messages\angular-messages.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-ui-router-title\angular-ui-router-title.js" />
+    <Content Include="Scripts\angular-ui-router\angular-ui-router.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\ng-file-upload\ng-file-upload.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AngularViewsController.cs" />
+    <Compile Include="Controllers\Helpers\AppModelHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,7 +198,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\__Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -209,7 +215,8 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\AngularViews\Home.cshtml" />
+    <Content Include="Views\AngularViews\AccountSettings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Api\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\EnmerCore\EnmerCore.csproj">

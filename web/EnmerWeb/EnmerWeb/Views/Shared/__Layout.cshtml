@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutBlank.cshtml";
 }
 
-<section ng-app="EnmerApp" ng-cloak layout="row" flex>
+<section ng-cloak layout="row"  ng-controller="EnmerCtrl" flex>
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
                 md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="margin-right: 10px;">
         <md-toolbar>
@@ -26,7 +26,7 @@
             </md-toolbar>
             <md-list id="main_menu">
                 <md-list-item>
-                    <a>
+                    <a >
                         <md-item-content md-ink-ripple layout="row" layout-align="start center">
                             <div class="inset">
                                 <ng-md-icon icon="dashboard"></ng-md-icon>
@@ -100,7 +100,7 @@
                 <md-divider></md-divider>
                 <md-subheader>Settings</md-subheader>
                 <md-list-item>
-                    <a>
+                    <a href="/account">
                         <md-item-content md-ink-ripple layout="row" layout-align="start center">
                             <div class="inset">
                                 <ng-md-icon icon="account_circle"></ng-md-icon>
@@ -133,7 +133,7 @@
                 <md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
                     <ng-md-icon icon="menu"></ng-md-icon>
                 </md-button>
-                @RenderSection("toolbar")
+                <span ng-bind="($title || 'Enmer')"></span>
             </div>
         </md-toolbar>
         @RenderBody()
@@ -143,9 +143,6 @@
 
 
 @section scripts{
-    <script>
-        var app = angular.module('EnmerApp', ['ngMaterial', 'ngMessages', 'ngMdIcons']);
-    </script>
     @RenderSection("scripts")
 }
 

@@ -1,15 +1,150 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model EnmerWeb.Models.AppModel
+@{
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
 }
 
-@section toolbar
-{
-    <h2>Index</h2>
-}
 
+<section ng-cloak layout="row" ng-controller="EnmerCtrl" flex>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
+                md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="margin-right: 10px;">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <div>@Model.UserModel.FirstName @Model.UserModel.LastName</div>
+            </div>
+        </md-toolbar>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <ng-md-icon size="64" icon="account_circle" style="fill: white"></ng-md-icon>
+                <span flex></span>
+                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                {
+                    <md-button class="md-icon-button" aria-label="Settings" type="submit">
+                        <ng-md-icon icon="exit_to_app" style="fill: white"></ng-md-icon>
+                    </md-button>
+                }
+            </div>
+        </md-toolbar>
+        <md-list id="main_menu">
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="dashboard"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Dashboard
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="notifications"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Notifications
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="apps"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Logging Sources
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="toys"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Tasks
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="folder"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Logs
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="people"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Team
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader>Settings</md-subheader>
+            <md-list-item>
+                <a href="/myaccount">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="account_circle"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Account
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a>
+                    <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                        <div class="inset">
+                            <ng-md-icon icon="settings"></ng-md-icon>
+                        </div>
+                        <div class="inset">
+                            Preferences
+                        </div>
+                    </md-item-content>
+                </a>
+            </md-list-item>
+        </md-list>
+
+    </md-sidenav>
+
+    <div flex class="md-whiteframe-z2">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+                    <ng-md-icon icon="menu"></ng-md-icon>
+                </md-button>
+                <span ng-bind="($title || 'Enmer')"></span>
+            </div>
+        </md-toolbar>
+        <div ui-view></div>
+    </div>
+</section>
 
 
 @section scripts{
-    
+    <script>
+
+       
+
+    </script>
 }

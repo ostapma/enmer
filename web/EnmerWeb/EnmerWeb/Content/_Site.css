@@ -10,3 +10,7 @@
 #main_menu ng-md-icon {
     fill: gray
 }
+
+a {
+    text-decoration: none !important;
+}

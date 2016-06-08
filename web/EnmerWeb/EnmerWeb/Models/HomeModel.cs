@@ -14,4 +14,9 @@ namespace EnmerWeb.Models
             set;
         }
     }
+
+    public class AccountModel:AppModel
+    {
+        
+    }
 }
