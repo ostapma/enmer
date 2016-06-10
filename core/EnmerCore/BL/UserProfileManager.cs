@@ -42,12 +42,22 @@ namespace EnmerCore.BL
         {
             using (var context = new EnmerDbContext())
             {
-                var userProfile = GetProfile(userID);
+                var userProfile = GetProfile(userID,context);
                 if (userProfile != null)
                 {
                     userProfile.FirstName = firstName;
                     userProfile.LastName = lastName;
+
+
+                    if (userProfile.PictureID!=null&&pictureID==null)
+                    {
+                        new PictureManager().DeletePicture(userProfile.PictureID
+                            ,context);
+                    }
+
+
                     userProfile.PictureID = pictureID;
+
                     context.SaveChanges();
                 }
             }

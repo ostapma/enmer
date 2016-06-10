@@ -21,3 +21,10 @@
     }
 }
 
+.userpick-image{
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    max-width: 64px;
+    max-height: 64px;
+}

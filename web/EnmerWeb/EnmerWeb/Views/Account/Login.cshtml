@@ -1,10 +1,14 @@
 ﻿@model EnmerWeb.Models.LoginModel
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutBlank.cshtml";
 }
-<div layout="row" layout-align="center center" flex ng-app = "LoginApp" ng-cloak>
+
+@section head{
+    <title>Login</title>
+}
+
+<div layout="row" layout-align="center center" flex ng-cloak>
     <md-content>
         <md-card>
             <md-card-title layout="row">
@@ -66,6 +70,9 @@
 
 @section scripts{
     <script>
+        
+        var app = angular.module('EnmerApp', ['ngMaterial', 'ngMessages']);
+
         var ctr = app.controller('LoginCtrl', function ($scope) {
             $scope.data = {
                 email: "",

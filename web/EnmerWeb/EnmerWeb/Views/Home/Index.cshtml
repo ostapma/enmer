@@ -3,18 +3,22 @@
     Layout = "~/Views/Shared/_LayoutBlank.cshtml";
 }
 
+@section head{
+    <title ng-bind="($title || 'Enmer')">Enmer</title>
+}
 
 <section ng-cloak layout="row" ng-controller="EnmerCtrl" flex>
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
                 md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="margin-right: 10px;">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <div>@Model.UserModel.FirstName @Model.UserModel.LastName</div>
+                <div>{{profile.firstName}} {{profile.lastName}}</div>
             </div>
         </md-toolbar>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <ng-md-icon size="64" icon="account_circle" style="fill: white"></ng-md-icon>
+                <ng-md-icon size="64" icon="account_circle" style="fill: white" ng-if="!profile.pictureID"></ng-md-icon>
+                <img class="userpick-image" ng-src="/api/image/{{profile.pictureID}}" ng-if="profile.pictureID" style="margin-bottom: 4px;" />
                 <span flex></span>
                 @using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
                 {
@@ -26,7 +30,7 @@
         </md-toolbar>
         <md-list id="main_menu">
             <md-list-item>
-                <a>
+                <a href="/">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
                             <ng-md-icon icon="dashboard"></ng-md-icon>
@@ -38,7 +42,7 @@
                 </a>
             </md-list-item>
             <md-list-item>
-                <a>
+                <a href="/notifications">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
                             <ng-md-icon icon="notifications"></ng-md-icon>
@@ -50,7 +54,7 @@
                 </a>
             </md-list-item>
             <md-list-item>
-                <a>
+                <a  href="/sources">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
                             <ng-md-icon icon="apps"></ng-md-icon>
@@ -62,7 +66,7 @@
                 </a>
             </md-list-item>
             <md-list-item>
-                <a>
+                <a  href="/tasks">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
                             <ng-md-icon icon="toys"></ng-md-icon>
@@ -86,7 +90,7 @@
                 </a>
             </md-list-item>
             <md-list-item>
-                <a>
+                <a  href="/team">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
                             <ng-md-icon icon="people"></ng-md-icon>
@@ -112,7 +116,7 @@
                 </a>
             </md-list-item>
             <md-list-item>
-                <a>
+                <a  href="/preferences">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
                             <ng-md-icon icon="settings"></ng-md-icon>
@@ -136,15 +140,19 @@
                 <span ng-bind="($title || 'Enmer')"></span>
             </div>
         </md-toolbar>
+        <div class="loading" data-loading >
+        </div>
         <div ui-view></div>
     </div>
 </section>
 
 
 @section scripts{
-    <script>
-
-       
-
-    </script>
+    <script src="~/Scripts/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/Scripts/angular-ui-router-title/angular-ui-router-title.js"></script>
+    <script src="~/Scripts/angular-material-icons/angular-material-icons.js"></script>
+    <script src="~/Scripts/angular-resource/angular-resource.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/controllers/appController.js"></script>
+    <script src="~/Scripts/controllers/accountSettings.js"></script>
 }

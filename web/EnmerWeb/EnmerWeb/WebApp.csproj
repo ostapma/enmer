@@ -45,11 +45,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -157,6 +161,7 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\spinner.css" />
     <Content Include="Content\_Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-animate\angular-animate.js" />
@@ -169,12 +174,18 @@
     <Content Include="Scripts\angular-material\angular-material.min.js" />
     <Content Include="Scripts\angular-messages\angular-messages.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource\angular-resource.js" />
     <Content Include="Scripts\angular-ui-router-title\angular-ui-router-title.js" />
     <Content Include="Scripts\angular-ui-router\angular-ui-router.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\controllers\appController.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\ng-file-upload\ng-file-upload.js" />
+    <Content Include="Scripts\controllers\accountSettings.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -182,12 +193,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AngularViewsController.cs" />
+    <Compile Include="Controllers\Api\AccountSettingsController.cs" />
+    <Compile Include="Controllers\Api\ImageController.cs" />
     <Compile Include="Controllers\Helpers\AppModelHelper.cs" />
+    <Compile Include="Controllers\Helpers\ImageConverter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountSettings.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -215,8 +230,9 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Views\AngularViews\Home.cshtml" />
+    <Content Include="Views\AngularViews\Dashboard.cshtml" />
     <Content Include="Views\AngularViews\AccountSettings.cshtml" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -226,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Api\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\core\EnmerCore\EnmerCore.csproj">

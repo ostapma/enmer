@@ -1,33 +1,15 @@
 ﻿var app = angular.module('EnmerApp', ['ngMaterial', 'ngMessages', 'ngMdIcons',
-      'ui.router', 'ui.router.title']);
-app.controller('EnmerCtrl',
-[
-    '$scope', '$mdSidenav',
-    function ($scope, $mdSidenav) {
-        $scope.toggleSidenav = function (menuId) {
-            $mdSidenav(menuId).toggle();
-        };
-    }
-]);
-
-app.controller('AccountSettingsCtrl',
-[
-    '$scope', 
-    function ($scope) {
-
-    }
-]);
-
+      'ui.router', 'ui.router.title', 'ngResource']);
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise("/");
     $stateProvider
-        .state('home',
+        .state('dashboard',
         {
             url: "/",
-            templateUrl: "partials/home",
+            templateUrl: "partials/dashboard",
             resolve: {
-                $title: function () { return 'Enmer'; }
+                $title: function () { return 'Dashboard'; }
             }
         });
     $stateProvider
@@ -37,7 +19,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "partials/accountsettings",
             resolve: {
                 $title: function () { return 'Account Settings'; }
-            }
+            },
+            controller: 'AccountSettingsCtrl'
         });
 
 });
@@ -49,7 +32,7 @@ app.config([
 ]);
 
 
-app.factory("fileReader", function ($q, $log) {
+app.factory("fileReader", function ($q) {
     var onLoad = function (reader, deferred, scope) {
         return function () {
             scope.$apply(function () {
@@ -91,11 +74,31 @@ app.factory("fileReader", function ($q, $log) {
 
         return deferred.promise;
     };
-
     return {
         readAsDataUrl: readAsDataURL
     };
 });
+
+
+app.directive('loading', ['$http', function ($http) {
+        return {
+            restrict: 'A',
+            link: function (scope, elm, attrs) {
+                scope.isLoading = function () {
+                    return $http.pendingRequests.length > 0;
+                };
+
+                scope.$watch(scope.isLoading, function (v) {
+                    if (v) {
+                        elm.show();
+                    } else {
+                        elm.hide();
+                    }
+                });
+            }
+        };
+
+    }]);
 
 app.directive("ngFileSelect", function (fileReader, $timeout) {
       return {
@@ -107,7 +110,9 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
                   fileReader.readAsDataUrl(file, $scope)
                     .then(function (result) {
                         $timeout(function () {
-                            $scope.ngModel = result;
+                            $scope.ngModel = {};
+                            $scope.ngModel.dataUrl = result;
+                            $scope.ngModel.file = file;
                         });
                     });
               }
@@ -115,8 +120,34 @@ app.directive("ngFileSelect", function (fileReader, $timeout) {
               el.bind("change", function (e) {
                   var file = (e.srcElement || e.target).files[0];
                   getFile(file);
+                  (e.srcElement || e.target).value = null;
               });
           }
       };
   });
+
+
+
+angular.module('EnmerApp').factory('accountSettings', ['$resource',
+      function ($resource) {
+          return $resource('/api/accountSettings/', {}, {
+              query: { method: 'GET', params: {} }
+          });
+      }]);
+
+angular.module('EnmerApp').factory('image', ['$http', 'fileReader',
+      function ($http) {
+          return {
+              save: function (file) {
+                  var fd = new FormData();
+                  fd.append('file', file);
+                  return $http.post('api/image', fd,
+                  {
+                      transformRequest: angular.identity,
+                      headers: { "Content-Type": undefined }
+                  });
+
+              }
+          };
+      }]);
 

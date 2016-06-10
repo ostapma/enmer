@@ -9,7 +9,7 @@ namespace EnmerWeb.Controllers
     public class AngularViewsController : Controller
     {
         // GET: AngularViews
-        public ActionResult Home()
+        public ActionResult Dashboard()
         {
             return View();
         }

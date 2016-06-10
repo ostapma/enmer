@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace EnmerCore.DataObjects
 {
-    [Table("Picture")]
+    [Table("Pictures")]
     public class Picture
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string PictureID { get; set; }
 
         [Column(TypeName = "Image")]

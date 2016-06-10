@@ -14,3 +14,10 @@
 #main_menu a, #main_menu a:visited, #main_menu a:hover, #main_menu a:active {
   color: inherit; }
 
+.userpick-image {
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  max-width: 64px;
+  max-height: 64px; }
+
