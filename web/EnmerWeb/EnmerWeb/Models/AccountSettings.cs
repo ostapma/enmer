@@ -7,7 +7,23 @@ using Newtonsoft.Json;
 
 namespace EnmerWeb.Models
 {
-    public class AccountSettings
+
+    public class PasswordSettings
+    {
+        public string CurrentPassword
+        {
+            get;
+            set;
+        }
+
+        public string NewPassword
+        {
+            get;
+            set;
+        }
+    }
+
+    public class ProfileSettingsModel
     {
         public string FirstName
         {
@@ -21,17 +37,26 @@ namespace EnmerWeb.Models
             set;
         }
 
+        public string PictureID
+        {
+            get;
+            set;
+        }
+    }
+
+    public class AccountSettingsModel
+    {
+        public ProfileSettingsModel ProfileSettings
+        {
+            get;
+            set;
+        }
+
         public string Email
         {
             get;
             set;
         }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string PictureID
-        {
-            get;
-            set;
-        }
     }
 }

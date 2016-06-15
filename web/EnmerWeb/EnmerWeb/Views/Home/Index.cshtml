@@ -7,7 +7,7 @@
     <title ng-bind="($title || 'Enmer')">Enmer</title>
 }
 
-<section ng-cloak layout="row" ng-controller="EnmerCtrl" flex>
+<section ng-cloak layout="row" ng-controller="EnmerCtrl" style="margin:20px" flex>
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
                 md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="margin-right: 10px;">
         <md-toolbar>
@@ -142,7 +142,7 @@
         </md-toolbar>
         <div class="loading" data-loading >
         </div>
-        <div ui-view></div>
+        <section ui-view flex></section>
     </div>
 </section>
 

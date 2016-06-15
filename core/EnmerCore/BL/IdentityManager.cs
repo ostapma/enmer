@@ -37,7 +37,27 @@ namespace EnmerCore.BL
         {
         }
 
-      
+
+        public async Task ChangeEmail(string userId, string email)
+        {
+            var user = await FindByIdAsync(userId);
+
+            user.Email = email;
+
+            // Persiste the changes
+            await UpdateAsync(user);
+        }
+
+        public async Task ChangeUserName(string userId, string userName)
+        {
+            var user = await FindByIdAsync(userId);
+
+            user.UserName = userName;
+
+            // Persiste the changes
+            await UpdateAsync(user);
+        }
+
     }
 
     
