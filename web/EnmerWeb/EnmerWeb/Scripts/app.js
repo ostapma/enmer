@@ -22,6 +22,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             },
             controller: 'AccountSettingsCtrl'
         });
+    $stateProvider
+        .state('sources',
+        {
+            url: "/sources",
+            templateUrl: "partials/loggingsources",
+            resolve: {
+                $title: function () { return 'Logging Sources'; }
+            }
+        });
+
+    $stateProvider
+       .state('sourceEdit',
+       {
+           url: "/sources/:{sourceid:[0-9]{6}}",
+           templateUrl: "partials/loggingsourcesedit",
+           resolve: {
+               $title: function () { return 'Logging Sources'; }
+           }
+       });
 
 });
 

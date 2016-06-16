@@ -20,6 +20,18 @@ namespace EnmerWeb
             );
 
             routes.MapRoute(
+                name: "Account",
+                url: "account/{action}",
+                defaults: new { controller = "Account", action = "Login" }
+            );
+
+            routes.MapRoute(
+                name: "Override",
+                url: "{*.}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

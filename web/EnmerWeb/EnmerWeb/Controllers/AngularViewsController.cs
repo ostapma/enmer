@@ -18,5 +18,15 @@ namespace EnmerWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult LoggingSources()
+        {
+            return View();
+        }
+
+        public ActionResult LoggingSourceEdit()
+        {
+            return View();
+        }
     }
 }

@@ -1,60 +1,49 @@
-﻿<md-content layout-padding layout="column">
-    <div layout-xs="column" layout="row">
-        <div flex-xs flex-gt-xs="50" layout="column">
-            <md-card ng-controller="ProfileSettingsCtrl">
-                <form name="profileSettingsForm" novalidate="" ng-submit="save()">
-                    <md-card-title layout="row">
-                        <md-card-title-text>
-                            <span class="md-headline">Personal Info</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content layout="column">
-                        <md-input-container class="md-block">
-                            <label>First Name</label>
-                            <input required ng-model="settings.firstName" name="firstName">
-                            <div ng-messages="profileSettingsForm.firstName.$error">
-                                <div ng-message="required">First Name is required.</div>
-                            </div>
-                        </md-input-container>
-                        <md-input-container class="md-block">
-                            <label>Last Name</label>
-                            <input required ng-model="settings.lastName" name="lastName">
-                            <div ng-messages="profileSettingsForm.lastName.$error">
-                                <div ng-message="required">Last Name is required.</div>
-                            </div>
-                        </md-input-container>
-                        <div layout="row">
-                            <input class="ng-hide" id="input-file-id" type="file" ng-file-select="onFileSelect($files)"
-                                   ng-model="image" accept="image/png, image/jpeg" />
-                            <ng-md-icon size="64" icon="account_circle" ng-if="!(settings.pictureID||image)"></ng-md-icon>
-                            <img class="userpick-image" ng-src="{{image.dataUrl||('/api/image/'+settings.pictureID)}}" ng-if="settings.pictureID||image" />
-                            <div layout="column">
-                                <md-button class="md-icon-button" aria-label="toggle" ng-click="deletePicture()">
-                                    <ng-md-icon icon="delete_forever" style="fill: red"></ng-md-icon>
-                                </md-button>
-                                <label for="input-file-id" class="md-button md-raised">Choose Picture</label>
+﻿<md-tabs md-dynamic-height md-border-bottom>
+<md-tab label="Personal Info">
+<md-content class="md-padding">
+    <div flex-xs flex-gt-xs="50" layout="column" ng-controller="ProfileSettingsCtrl">
+        <form name="profileSettingsForm" novalidate="" ng-submit="save()">
+            <md-input-container class="md-block">
+                <label>First Name</label>
+                <input required ng-model="settings.firstName" name="firstName">
+                <div ng-messages="profileSettingsForm.firstName.$error">
+                    <div ng-message="required">First Name is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Last Name</label>
+                <input required ng-model="settings.lastName" name="lastName">
+                <div ng-messages="profileSettingsForm.lastName.$error">
+                    <div ng-message="required">Last Name is required.</div>
+                </div>
+            </md-input-container>
+            <div layout="row">
+                <input class="ng-hide" id="input-file-id" type="file" ng-file-select="onFileSelect($files)"
+                       ng-model="image" accept="image/png, image/jpeg"/>
+                <ng-md-icon size="64" icon="account_circle" ng-if="!(settings.pictureID||image)"></ng-md-icon>
+                <img class="userpick-image" ng-src="{{image.dataUrl||('/api/image/'+settings.pictureID)}}" ng-if="settings.pictureID||image"/>
+                <div layout="column">
+                    <md-button class="md-icon-button" aria-label="toggle" ng-click="deletePicture()">
+                        <ng-md-icon icon="delete_forever" style="fill: red"></ng-md-icon>
+                    </md-button>
+                    <label for="input-file-id" class="md-button md-raised">Choose Picture</label>
 
-                            </div>
-                        </div>
-                    </md-card-content>
-                    <div></div>
-                    <md-card-actions layout="row" layout-align="start">
-                        <md-button class="md-raised" type="submit" ng-disabled="!profileSettingsForm.$valid">Save</md-button>
-                    </md-card-actions>
-                </form>
-            </md-card>
-        </div>
-        <div flex-xs flex-gt-xs="50" layout="column">
-            <md-card ng-controller="LoginSettingsCtrl">
+                </div>
+            </div>
+            <div></div>
+            <div layout="row" layout-align="start">
+                <md-button class="md-raised" type="submit" ng-disabled="!profileSettingsForm.$valid">Save</md-button>
+            </div>
+        </form>
+    </div>
+</md-content>
+    </md-tab>
+<md-tab label="Login(Email)">
+    <md-content class="md-padding">
+        <div flex-xs flex-gt-xs="50" layout="column" ng-controller="LoginSettingsCtrl">
                 <form name="accountSettingsForm" novalidate="" ng-submit="save()">
-                    <md-card-title layout="row">
-                        <md-card-title-text>
-                            <span class="md-headline">Login</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content layout="column">
                         <md-input-container class="md-block">
-                            <label>Email (Login)</label>
+                            <label>Login (Email)</label>
                             <input type="email" required ng-model="settings.email" name="email">
                             <div ng-messages="accountSettingsForm.email.$error">
                                 <div ng-message="required">Email is required.</div>
@@ -71,25 +60,18 @@
                                 <div ng-message="nxEqualEx">Email confirmation doesn't match.</div>
                             </div>
                         </md-input-container>
-                    </md-card-content>
                     <div></div>
-                    <md-card-actions layout="row" layout-align="start">
+                    <div layout="row" layout-align="start">
                         <md-button class="md-raised" type="submit" ng-disabled="!accountSettingsForm.$valid">Save</md-button>
-                    </md-card-actions>
+                    </div>
                 </form>
-            </md-card>
         </div>
-    </div>
-    <div layout-xs="column" layout="row">
-        <div flex-xs flex-gt-xs="50" layout="column">
-            <md-card ng-controller="PasswordSettingsCtrl">
+    </md-content>
+</md-tab>
+<md-tab label="Password">
+<md-content class="md-padding">
+        <div flex-xs flex-gt-xs="50" layout="column" ng-controller="PasswordSettingsCtrl">
                 <form name="passwordSettingsForm" novalidate="" ng-submit="save()">
-                    <md-card-title layout="row">
-                        <md-card-title-text>
-                            <span class="md-headline">Password</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content layout="column">
                         <md-input-container class="md-block">
                             <label>Current Password</label>
                             <input type="password" required ng-model="settings.currentPassword" name="currentPassword">
@@ -106,21 +88,20 @@
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>New Password Confirmation</label>
-                            <input  type="password" required
+                            <input type="password" required
                                    name="newPasswordConfirmation" nx-equal-ex="settings.newPassword"
                                    ng-model="newPasswordConfirmation">
-                             <div ng-messages="passwordSettingsForm.newPasswordConfirmation.$error">
+                            <div ng-messages="passwordSettingsForm.newPasswordConfirmation.$error">
                                 <div ng-message="required">New password confirmation is required.</div>
                                 <div ng-message="nxEqualEx">Password confirmation doesn't match.</div>
                             </div>
                         </md-input-container>
-                    </md-card-content>
                     <div></div>
-                    <md-card-actions layout="row" layout-align="start">
+                    <div layout="row" layout-align="start">
                         <md-button class="md-raised" type="submit" ng-disabled="!passwordSettingsForm.$valid">Save</md-button>
-                    </md-card-actions>
+                    </div>
                 </form>
-            </md-card>
-        </div>
         </div>
 </md-content>
+    </md-tab>
+    </md-tabs>
