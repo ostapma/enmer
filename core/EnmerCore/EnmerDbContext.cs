@@ -19,6 +19,8 @@ namespace EnmerCore
 
         public virtual DbSet<Picture> Pictures { get; set; }
 
+        public virtual DbSet<LoggingSource> LoggingSources { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

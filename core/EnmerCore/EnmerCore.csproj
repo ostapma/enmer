@@ -72,13 +72,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\IdentityManager.cs" />
+    <Compile Include="BL\LoggingSourceManager.cs" />
     <Compile Include="BL\PictureManager.cs" />
     <Compile Include="DAL\DataRepository.cs" />
     <Compile Include="BL\UserProfileManager.cs" />
     <Compile Include="DataObjects\EnmerUser.cs" />
+    <Compile Include="DataObjects\LoggingSource.cs" />
     <Compile Include="DataObjects\Picture.cs" />
     <Compile Include="EnmerDbContext.cs" />
     <Compile Include="EnmerIdentityDbContext.cs" />
+    <Compile Include="Exceptions\LoggingSourceCodeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataObjects\UserProfile.cs" />
   </ItemGroup>

@@ -1,55 +1,7 @@
 ﻿var app = angular.module('EnmerApp', ['ngMaterial', 'ngMessages', 'ngMdIcons',
       'ui.router', 'ui.router.title', 'ngResource']);
-app.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/");
-    $stateProvider
-        .state('dashboard',
-        {
-            url: "/",
-            templateUrl: "partials/dashboard",
-            resolve: {
-                $title: function () { return 'Dashboard'; }
-            }
-        });
-    $stateProvider
-        .state('myaccount',
-        {
-            url: "/myaccount",
-            templateUrl: "partials/accountsettings",
-            resolve: {
-                $title: function () { return 'Account Settings'; }
-            },
-            controller: 'AccountSettingsCtrl'
-        });
-    $stateProvider
-        .state('sources',
-        {
-            url: "/sources",
-            templateUrl: "partials/loggingsources",
-            resolve: {
-                $title: function () { return 'Logging Sources'; }
-            }
-        });
-
-    $stateProvider
-       .state('sourceEdit',
-       {
-           url: "/sources/:{sourceid:[0-9]{6}}",
-           templateUrl: "partials/loggingsourcesedit",
-           resolve: {
-               $title: function () { return 'Logging Sources'; }
-           }
-       });
-
-});
-
-app.config([
-    '$locationProvider', function ($locationProvider) {
-        $locationProvider.html5Mode(true).hashPrefix('!');
-    }
-]);
-
+router(app);
 
 app.factory("fileReader", function ($q) {
     var onLoad = function (reader, deferred, scope) {

@@ -5,7 +5,7 @@ namespace EnmerCore.DataObjects
 {
 
 
-    [Table("UserProfile")]
+    [Table("UserProfiles")]
     public partial class UserProfile
     {
         [Key]
