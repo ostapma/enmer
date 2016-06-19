@@ -7,7 +7,7 @@
     <title ng-bind="($title || 'Enmer')">Enmer</title>
 }
 
-<section ng-cloak layout="row" ng-controller="EnmerCtrl" style="margin:20px" flex>
+<section ng-cloak layout="row" ng-controller="EnmerCtrl" style="margin:20px">
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
                 md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="margin-right: 10px;">
         <md-toolbar>
@@ -77,7 +77,7 @@
                     </md-item-content>
                 </a>
             </md-list-item>
-            <md-list-item>
+            @*<md-list-item>
                 <a>
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
                         <div class="inset">
@@ -88,7 +88,7 @@
                         </div>
                     </md-item-content>
                 </a>
-            </md-list-item>
+            </md-list-item>*@
             <md-list-item>
                 <a  href="/team">
                     <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -131,18 +131,19 @@
 
     </md-sidenav>
 
-    <div flex class="md-whiteframe-z2">
+    <div flex class="md-whiteframe-z2" layout="column">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <md-button class="md-icon-button" ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
                     <ng-md-icon icon="menu"></ng-md-icon>
                 </md-button>
-                <span ng-bind="($title || 'Enmer')"></span>
+                <span ng-bind="($title || 'Enmer')" flex></span>
+                <div ui-view="toolbar" layout-align="end center" layout="row"></div>
             </div>
         </md-toolbar>
         <div class="loading" data-loading >
         </div>
-        <section ui-view flex></section>
+        <section ui-view="content" flex layout="column"></section>
     </div>
 </section>
 
@@ -154,6 +155,7 @@
     <script src="~/Scripts/angular-resource/angular-resource.js"></script>
     <script src="~/Scripts/app/routing.js"></script>
     <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/app/connect.js"></script>
     <script src="~/Scripts/app/appController.js"></script>
     <script src="~/Scripts/app/accountSettingsController.js"></script>
     <script src="~/Scripts/app/loggingSourceController.js"></script>

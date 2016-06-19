@@ -1,1 +1,20 @@
-﻿
+﻿<md-content class="md-padding">
+    <md-list flex>
+        <md-list-item ng-repeat="source in sources" layout-align="start" class="md-whiteframe-z2 layout-padding">
+            <div class="md-list-item-text" flex>
+                <h3>{{source.name}}</h3>
+                <a href="{{source.siteLink}}" target="_blank">
+                    {{source.siteLink}}
+                </a>
+                <p>{{source.description}}</p>
+                <div flex>
+                    <md-button ng-click="showLogs(source)">Logs</md-button>
+                    <md-button ng-click="edit(source)">Edit</md-button>
+                    <md-button ng-click="toggleEnabled(source)">{{source.isEnabled?"Disable":"Enable"}}</md-button>
+                    <md-button ng-click="delete(source)">Delete</md-button>
+                </div>
+            </div>
+
+        </md-list-item>
+    </md-list>
+</md-content>

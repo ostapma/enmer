@@ -57,9 +57,12 @@ namespace EnmerCore.BL
 
         private void CheckCodeUniqueness(string code, EnmerDbContext context)
         {
-            if (context.LoggingSources.Any(s=>s.Code==code))
+            if (code != null)
             {
-                throw new LoggingSourceCodeException();
+                if (context.LoggingSources.Any(s => s.Code == code))
+                {
+                    throw new LoggingSourceCodeException();
+                }
             }
         }
 
@@ -93,7 +96,10 @@ namespace EnmerCore.BL
                 var loggingSource = GetLoggingSource(loggingSourceID, context);
                 if (loggingSource != null)
                 {
-                    CheckCodeUniqueness(code, context);
+                    if (loggingSource.Code!=code)
+                    {
+                        CheckCodeUniqueness(code, context);
+                    }
                     loggingSource.Code = code;
                     loggingSource.Name = name;
                     loggingSource.Description = description;

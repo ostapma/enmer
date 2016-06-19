@@ -1,7 +1,30 @@
 ﻿<md-content class="md-padding">
-    <form name="profileSettingsForm" novalidate="" ng-submit="save()">
-        <div layout="row" layout-align="start">
-            <md-button class="md-raised" type="submit" ng-disabled="false">Save</md-button>
+    <form name="loggingSourceEditForm" novalidate="" ng-submit="save()">
+        <div layout="column">
+            <md-input-container class="md-block">
+                <label>Name</label>
+                <input required ng-model="source.name" name="name" />
+                <div ng-messages="loggingSourceEditForm.name.$error">
+                    <div ng-message="required">Name is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Site</label>
+                <input ng-model="source.siteLink" name="siteLink" type="url"/>
+                <div ng-messages="loggingSourceEditForm.siteLink.$error">
+                    <div ng-message="url">Incorrect URL</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea ng-model="source.description" name="description" cols="40" rows="5" required=""></textarea>
+                <div ng-messages="loggingSourceEditForm.description.$error">
+                    <div ng-message="required">Description is required.</div>
+                </div>
+            </md-input-container>
+            <div>
+                <md-button class="md-raised" ng-disabled="!loggingSourceEditForm.$valid">Save</md-button>
+            </div>
         </div>
     </form>
-    </md-content>
+</md-content>

@@ -33,14 +33,21 @@ namespace EnmerCore.DataObjects
             set;
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated
         {
             get;
             set;
         }
 
-        [StringLength(128), ForeignKey("UserProfile")]
+        [StringLength(128), ForeignKey("UserAddedProfile")]
         public string UserAdded
+        {
+            get;
+            set;
+        }
+
+        public UserProfile UserAddedProfile
         {
             get;
             set;
